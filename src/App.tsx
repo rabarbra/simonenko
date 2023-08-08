@@ -1,9 +1,7 @@
 import React from 'react';
 import './App.css';
 import {
-    ActionIcon,
-    Button,
-    NavLink
+    ActionIcon
 }   from '@mantine/core';
 import {
     ReactComponent as GithubIcon
