@@ -10,7 +10,7 @@ import {
     Header
 }   from '@mantine/core';
 import {
-    useColorScheme
+    useColorScheme, useMediaQuery
 }   from '@mantine/hooks';
 import {
     IconSun,
@@ -24,10 +24,13 @@ import {
 }   from './icons/linkedin.svg';
 
 function App() {
-    const preferredColorScheme = useColorScheme("dark");
+    const preferredColorScheme = useColorScheme(useMediaQuery('(prefers-color-scheme: dark)') ? "dark" : "light");
     const [colorScheme, setColorScheme] = React.useState<ColorScheme>(preferredColorScheme);
     const toggleColorScheme = (value?: ColorScheme) =>
         setColorScheme(value || (colorScheme === 'dark' ? 'light' : 'dark'));
+    React.useEffect(()=>{
+        setColorScheme(preferredColorScheme);
+    },[preferredColorScheme]);
     return (
         <ColorSchemeProvider colorScheme={colorScheme} toggleColorScheme={toggleColorScheme}>
             <MantineProvider theme={{ colorScheme }} withGlobalStyles withNormalizeCSS>
