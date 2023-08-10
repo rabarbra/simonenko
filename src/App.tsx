@@ -1,5 +1,4 @@
 import React from 'react';
-import './App.css';
 import {
     ActionIcon,
     Group,
@@ -7,10 +6,13 @@ import {
     ColorSchemeProvider,
     ColorScheme,
     AppShell,
-    Header
+    Header,
+    Flex,
+    Title
 }   from '@mantine/core';
 import {
-    useColorScheme, useMediaQuery
+    useColorScheme,
+    useMediaQuery
 }   from '@mantine/hooks';
 import {
     IconSun,
@@ -24,7 +26,9 @@ import {
 }   from './icons/linkedin.svg';
 
 function App() {
-    const preferredColorScheme = useColorScheme(useMediaQuery('(prefers-color-scheme: dark)') ? "dark" : "light");
+    const preferredColorScheme = useColorScheme(
+        useMediaQuery('(prefers-color-scheme: dark)') ? "dark" : "light"
+    );
     const [colorScheme, setColorScheme] = React.useState<ColorScheme>(preferredColorScheme);
     const toggleColorScheme = (value?: ColorScheme) =>
         setColorScheme(value || (colorScheme === 'dark' ? 'light' : 'dark'));
@@ -32,8 +36,17 @@ function App() {
         setColorScheme(preferredColorScheme);
     },[preferredColorScheme]);
     return (
-        <ColorSchemeProvider colorScheme={colorScheme} toggleColorScheme={toggleColorScheme}>
-            <MantineProvider theme={{ colorScheme }} withGlobalStyles withNormalizeCSS>
+        <ColorSchemeProvider
+            colorScheme={colorScheme}
+            toggleColorScheme={toggleColorScheme}
+        >
+            <MantineProvider
+                theme={{
+                    colorScheme
+                }}
+                withGlobalStyles
+                withNormalizeCSS
+            >
                 <AppShell
                     header={
                         <Header height={30} withBorder={false}>
@@ -44,16 +57,29 @@ function App() {
                                 onClick={() => toggleColorScheme()}
                                 title="Toggle color scheme"
                             >
-                                {colorScheme === 'dark' ? <IconSun size="1.1rem" /> : <IconMoonStars size="1.1rem" />}
+                                {
+                                    colorScheme === 'dark' ?
+                                    <IconSun size="1.1rem" /> :
+                                    <IconMoonStars size="1.1rem" />
+                                }
                             </ActionIcon>
                         </Header>
                     }
                 >
-                <div className="App">
-                    <header className="App-header">
-                        <p>
+                    <Flex
+                        direction="column"
+                        align="center"
+                        justify="center"
+                        gap="xl"
+                        mih="calc(100vh - 65px)"
+                    >
+                        <Title
+                            order={1}
+                            size={76}
+                            weight="normal"
+                        >
                             Polina Simonenko
-                        </p>
+                        </Title>
                         <Group>
                             <ActionIcon
                                 size="lg"
@@ -78,8 +104,7 @@ function App() {
                                 <LinkedinIcon/>
                             </ActionIcon>
                         </Group>
-                    </header>
-                </div>
+                    </Flex>
                 </AppShell>
             </MantineProvider>
         </ColorSchemeProvider>
