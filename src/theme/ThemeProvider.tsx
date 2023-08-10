@@ -17,17 +17,15 @@ const ThemeProvider = (props: {children: React.ReactNode}) =>
     );
     const [colorScheme, setColorScheme] = React.useState<ColorScheme>(preferredColorScheme);
     const [favicon, setFavicon] = React.useState(`${origin}/favicon.ico`);
-    const blackFav = `${origin}/favicon_black.svg`;
-    const whiteFav = `${origin}/favicon_white.svg`;
     const toggleColorScheme = (value?: ColorScheme) =>
         setColorScheme(value || (colorScheme === 'dark' ? 'light' : 'dark'));
     React.useEffect(()=>{
         if (preferredColorScheme === 'dark')
-            setFavicon(whiteFav);
+            setFavicon(`${origin}/favicon_white.svg`);
         else
-            setFavicon(blackFav)
+            setFavicon(`${origin}/favicon_black.svg`)
         setColorScheme(preferredColorScheme);
-    },[preferredColorScheme]);
+    },[preferredColorScheme, origin]);
     useFavicon(favicon);
 	return (
 		<ColorSchemeProvider
