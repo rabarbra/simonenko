@@ -75,7 +75,7 @@ function App() {
                     >
                         <Title
                             order={1}
-                            size={76}
+                            size="calc(10px + 5vmin)"
                             weight="normal"
                         >
                             Polina Simonenko
