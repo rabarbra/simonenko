@@ -25,7 +25,7 @@ const ThemeProvider = (props: {children: React.ReactNode}) =>
         else
             setFavicon(`${origin}/favicon_black.svg`)
         setColorScheme(preferredColorScheme);
-    },[preferredColorScheme, origin]);
+    },[preferredColorScheme]);
     useFavicon(favicon);
 	return (
 		<ColorSchemeProvider
